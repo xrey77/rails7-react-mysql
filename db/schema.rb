@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_020126) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_051941) do
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -37,6 +37,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_020126) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "products", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "descriptions"
+    t.integer "qty"
+    t.string "unit"
+    t.decimal "cost_price", precision: 10, scale: 2
+    t.decimal "sell_price", precision: 10, scale: 2
+    t.string "prod_pic"
+    t.string "category"
+    t.decimal "sale_price", precision: 10, scale: 2
+    t.integer "alert_level"
+    t.integer "critical_level"
+    t.timestamp "datecreated", default: -> { "CURRENT_TIMESTAMP" }
+    t.timestamp "dateupdated"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :products
 
   root 'home#index'
 
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
     put '/updateuserpicture/:id', to: 'users#UPDATEUSERPICTURE'
     put '/activateotp/:id', to: 'users#ACTIVATEMFA'
     post '/validateotpcode', to: 'users#VALIDATETOKEN'
+    get '/getallproducts/:page', to: 'products#index'
   end
 
 end

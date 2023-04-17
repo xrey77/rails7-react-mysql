@@ -8,6 +8,12 @@ class Api::UsersController < ActionController::Base
     skip_before_action :verify_authenticity_token
 
     def LOGIN        
+        # start = Time.now.to_i
+        # exp = Time.now.to_i + 4 * 3600
+        # print("START TIME :",start)
+        # print("EXPIRY TIME : ", exp)
+
+
         # SEARCH USERNAME
         @user = User.find_by_username(params[:username])
         if @user
@@ -18,7 +24,8 @@ class Api::UsersController < ActionController::Base
 
                 # COMPARE INPUT PASSWORD
                 if @ispassword == params[:password]
-                    payload = { data: @user.id }
+                    exp = Time.now.to_i + 4 * 3600
+                    payload = { data: @user.id, exp: exp }
                     token = JWT.encode payload, @user.secretkey, 'HS256'
                     return render :json => {'statuscode' => 200,
                         'message' => 'Login Successfull, please wait.',
@@ -71,13 +78,16 @@ class Api::UsersController < ActionController::Base
         begin
             @usr = User.find(params[:id])
             hdr = request.headers["Authorization"]
-            hdr = hdr.split(" ").last || hdr
+            hdr = hdr.split(" ").last || hdr              
+# start time : 6:08
             decoded_token = JWT.decode hdr, @usr.secretkey, true, { algorithm: 'HS256' }
             @user = User.find(params[:id])
             render :json => {'statuscode': 200,'userid': @user.id, 'lastname': @user.lastname, 'firstname': @user.firstname,
             'emailadd': @user.emailadd, 'mobileno': @user.mobileno, 'role': @user.role, 'picture': @user.picture,
             'isactivated': @user.isactivated, 'isblocked': @user.isblocked, 'qrcodeurl': @user.qrcodeurl}
-        rescue => e
+        rescue JWT::ExpiredSignature
+            render :json => {'statuscode' => 404, 'message' => 'TOKEN Expired, please logout then login again.'}
+        rescue JWT::DecodeError
             render :json => {'statuscode' => 404, 'message' => 'UnAthorized Access.'}
         end
     end

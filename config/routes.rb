@@ -14,7 +14,8 @@ Rails.application.routes.draw do
     put '/updateuserpicture/:id', to: 'users#UPDATEUSERPICTURE'
     put '/activateotp/:id', to: 'users#ACTIVATEMFA'
     post '/validateotpcode', to: 'users#VALIDATETOKEN'
-    get '/getallproducts/:page', to: 'products#index'
+    get '/getallproducts/:page', to: 'products#PRODUCTLIST'
+    get '/getproductdetails/:page', to: 'products#PRODUCTDETAILS'    
   end
 
 end

@@ -42,7 +42,8 @@ export default function Login() {
                             window.location.reload();
                         }, 3000);
                     } else {
-                        $(document).ready(function(){ 
+                        $(document).ready(function(){
+                            setMsg("");
                             $('#modalx')[0].click(); 
                             $('#otp')[0].click(); 
                         });

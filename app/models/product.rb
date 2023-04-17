@@ -1,3 +1,3 @@
 class Product < ApplicationRecord
-    paginates_per 5
+    paginates_per 10
 end

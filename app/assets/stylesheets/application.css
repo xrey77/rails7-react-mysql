@@ -46,7 +46,8 @@
 
  .footer {
     font-size: 12px;
-    padding: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
  }
 .user {
     width: 100px;
@@ -69,3 +70,16 @@
     margin: auto;
     width: 90%;
 }
+
+.xcard {
+    width: 250px!important;
+    height: 250px!important;
+}
+
+.sw {
+    max-width: 350px!important;
+    width: 400px!important;
+    height: 400px;
+    margin-left: 13px;
+  }
+  

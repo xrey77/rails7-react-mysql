@@ -1,12 +1,22 @@
 class Api::ProductsController < ApplicationController
 
- def index
+ def PRODUCTLIST
     @pg = params[:page]
+
     @products = Product.page(@pg)
     @totpages =  Product.page(1).total_pages
     print("Total Pages :", @totpages)
     render :json => {'totpages' => @totpages,'page' => @pg, 'products' => @products}
  end
+
+ def PRODUCTDETAILS
+   @pg = params[:page]
+   @products = Product.page(@pg)
+   @totpages =  Product.page(1).total_pages
+   print("Total Pages :", @totpages)
+   render :json => {'totpages' => @totpages,'page' => @pg, 'products' => @products}
+ end
+
 
  private
 

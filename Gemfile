@@ -49,6 +49,8 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  # gem 'rspec-rails', '~> 6.0', '>= 6.0.1'
+  gem 'byebug', '~> 11.1', '>= 11.1.3'  
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
@@ -65,6 +67,7 @@ group :development do
 end
 
 group :test do
+  gem 'rspec-rails', '~> 6.0', '>= 6.0.1'  
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"

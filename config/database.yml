@@ -4,6 +4,8 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem "sqlite3"
 #
+# RAILS_ENV=test
+
 default: &default
   adapter: mysql2
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -22,7 +24,12 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: rails_nextjs_test
+  username: rey
+  password: rey
+  host: 127.0.0.1
+  port: 3306
+
 
 production:
   <<: *default

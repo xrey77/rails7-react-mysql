@@ -3,7 +3,7 @@ import axios from "axios";
 import $ from 'jquery/dist/jquery';
 
 const api = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "http://127.0.0.1:3000",
     headers: {'Accept': 'application/json',
               'Content-Type': 'application/json'}
 })
@@ -32,12 +32,10 @@ export default function SelfService() {
     const Next = async (e: any) => {
         e.preventDefault();
         if (pg === totpage) {
-            // $("#next").addClass("disabled");
             return;
         }
         if (pg != totpage) {
             setPg(pg+1)
-            // $("#prev").removeClass("disabled");
             await fetchProducts(pg+1);    
             return;
         } 
@@ -47,7 +45,6 @@ export default function SelfService() {
     const Previous = async (e: any) => {
         e.preventDefault();
         if (pg === 1) {
-            // $("#prev").addClass("disabled");
             return;
         }
         if (pg !== 0) {

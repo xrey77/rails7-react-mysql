@@ -75,21 +75,20 @@ class Api::UsersController < ActionController::Base
 
     def GETUSERBYID
         # print("caption", "data")
-        begin
-            @usr = User.find(params[:id])
-            hdr = request.headers["Authorization"]
-            hdr = hdr.split(" ").last || hdr              
-# start time : 6:08
-            decoded_token = JWT.decode hdr, @usr.secretkey, true, { algorithm: 'HS256' }
+        # begin
+            # @usr = User.find(params[:id])
+            # hdr = request.headers["Authorization"]
+            # hdr = hdr.split(" ").last || hdr              
+            # decoded_token = JWT.decode hdr, @usr.secretkey, true, { algorithm: 'HS256' }
             @user = User.find(params[:id])
             render :json => {'statuscode': 200,'userid': @user.id, 'lastname': @user.lastname, 'firstname': @user.firstname,
             'emailadd': @user.emailadd, 'mobileno': @user.mobileno, 'role': @user.role, 'picture': @user.picture,
             'isactivated': @user.isactivated, 'isblocked': @user.isblocked, 'qrcodeurl': @user.qrcodeurl}
-        rescue JWT::ExpiredSignature
-            render :json => {'statuscode' => 404, 'message' => 'TOKEN Expired, please logout then login again.'}
-        rescue JWT::DecodeError
-            render :json => {'statuscode' => 404, 'message' => 'UnAthorized Access.'}
-        end
+        # rescue JWT::ExpiredSignature
+        #     render :json => {'statuscode' => 404, 'message' => 'TOKEN Expired, please logout then login again.'}
+        # rescue JWT::DecodeError
+        #     render :json => {'statuscode' => 404, 'message' => 'UnAthorized Access.'}
+        # end
     end
 
     def GETALLUSERS
@@ -225,3 +224,10 @@ class Api::UsersController < ActionController::Base
     end
 
 end
+
+
+
+
+
+
+
